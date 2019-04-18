@@ -1,0 +1,28 @@
+{
+  "name": "g_fact",
+  "version": "1.0.0",
+  "description": "Sistema de facturacion de nominas",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "author": "Erick Lugo",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "express-mysql-session": "^2.1.0",
+    "express-session": "^1.16.1",
+    "express-validator": "^5.3.1",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "timeago.js": "^4.0.0-beta.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
