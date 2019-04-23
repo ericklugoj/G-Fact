@@ -2,9 +2,18 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const flash = require('connect-flash');
+const session = require('express-session');
+const MySqlStore = require('express-mysql-session');
+const passport = require('passport');
+
+const {
+    database
+} = require('./keys');
 
 // Inicializacion
 const app = express();
+require('./lib/passport');
 
 // Configuraciones
 app.set('port', process.env.PORT || 4000);
@@ -19,14 +28,26 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 
 // Middlewares (funciones que se ejecutan con cada peticion)
+app.use(session({
+    secret: 'lugoserver',
+    resave: false, // no se renueve la sesion
+    saveUninitialized: false, // no se vuelva a establecer la sesion
+    store: new MySqlStore(database) // donde se guarda la sesion
+}));
+app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({
     extended: false
 }));
 app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Variables Globales
 app.use((req, res, next) => {
+    app.locals.success = req.flash('success');
+    app.locals.message = req.flash('message');
+    app.locals.user = req.user;
     next();
 });
 
