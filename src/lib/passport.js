@@ -15,12 +15,12 @@ passport.use('local.signin', new LocalStrategy({
         const user = rows[0];
         const validPassword = await helpers.matchPassword(password, user.password);
         if (validPassword) {
-            done(null, user, req.flash('success', 'Bienvenido de nuevo ' + user.username));
+            done(null, user, req.flash('success', 'Bienvenido ' + user.username));
         } else {
             done(null, false, req.flash('message', 'Contraseña incorrecta'));
         }
     } else {
-        return done(null, false, req.flash('message', 'El nombre de usuario es incorrecto'));
+        return done(null, false, req.flash('message', 'Nombre de usuario incorrecto'));
     }
 }));
 

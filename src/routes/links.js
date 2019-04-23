@@ -25,12 +25,12 @@ router.post('/add', isLoggedIn, async (req, res) => {
 
     await pool.query('INSERT INTO links SET ?', [newLink]);
     //mensajes
-    req.flash('success', 'Link agregado correctamente');
+    req.flash('success', 'Link agregado');
     res.redirect('/links');
 });
 
 router.get('/', isLoggedIn, async (req, res) => {
-    const links = await pool.query('SELECT * FROM database_GFact.links;');
+    const links = await pool.query('SELECT * FROM links;');
     res.render('links/list', {
         links
     });
@@ -42,7 +42,7 @@ router.get('/delete/:id', isLoggedIn, async (req, res) => {
     } = req.params;
 
     pool.query('DELETE FROM links WHERE id = ?', [id]);
-    req.flash('success', 'Link eliminado correctamente');
+    req.flash('success', 'Link eliminado');
     res.redirect('/links');
 });
 
@@ -77,7 +77,7 @@ router.post('/edit/:id', isLoggedIn, async (req, res) => {
 
     await pool.query('UPDATE links SET ? WHERE id = ?', [newLink, id]);
 
-    req.flash('success', 'Link actualizado correctamente');
+    req.flash('success', 'Link actualizado');
     res.redirect('/links');
 });
 
