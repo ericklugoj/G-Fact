@@ -4,7 +4,7 @@
   "description": "Sistema de facturacion de nominas",
   "main": "index.js",
   "scripts": {
-    "run": "node src/index.js",
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
   "author": "Erick Lugo",
