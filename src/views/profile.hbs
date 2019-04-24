@@ -1,11 +1,47 @@
-<div class="container p-4">
+{{!-- <div class="container p-4">
     <div class="row">
-        <div class="col-md-4 mx-auto">
+        <div class="col-md-12 mx-auto">
             <div class="card text-center">
                 <div class="card-body">
                     <h3>Bienvenido {{user.fullname}}</h3>
                     <h4>{{user.username}}</h4>
                     <a href="/links" class="btn btn-primary m-4">Crea tus links</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="card text-center">
+                <div class="card-body">
+                    {{!-- Poner informacion de la empresa y poder editarla (RFC, Dirección, etc) --}}
+                    <h1>Genesis Computadoras</h1>
+                    <h5>Bienvenido {{user.fullname}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h1><i class="fas fa-users"></i>
+                    </h1>
+                    <h5>Empleados <span class="badge badge-success">125</span></h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mx-auto">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h1><i class="fas fa-file-invoice-dollar"></i></h1>
+                    <h5>Facturas <span class="badge badge-success">125</span></h5>
                 </div>
             </div>
         </div>

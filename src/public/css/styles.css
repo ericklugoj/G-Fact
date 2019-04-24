@@ -5,6 +5,18 @@ body {
     overflow: hidden;
 }
 
+.navbar {
+    font-size: 14px;
+}
+
+.span-title {
+    color: #e74c3c;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
 .bg-black {
     background: #212121;
 }

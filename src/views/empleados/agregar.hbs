@@ -1,0 +1,80 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="mb-5"><i class="fas fa-user-plus"></i> Agregar Empleado</i></h3>
+                    <form action="/links/add" method="POST">
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="nombres">Nombres</label>
+                                <input name="nombres" type="text" class="form-control"
+                                    placeholder="primer y segundo nombre" autofocus required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="apellidos">Apellidos</label>
+                                <input name="apellidos" type="text" class="form-control"
+                                    placeholder="primer y segundo apellido" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="fechaNacimiento">Fecha de nacimiento</label>
+                                <input name="fechaNacimiento" type="date" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="sexo">Sexo</label>
+                                <select name="sexo" class="form-control" required>
+                                    <option selected>Hombre</option>
+                                    <option>Mujer</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="rfc">RFC</label>
+                                <input name="rfc" type="text" class="form-control" placeholder="RFC" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="curp">CURP</label>
+                                <input name="curp" type="text" class="form-control" placeholder="CURP" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="nss">Seguro Social</label>
+                                <input name="nss" type="text" class="form-control" placeholder="N. Seguro Social"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="departamento">Departamento</label>
+                                <input name="departamento" type="text" class="form-control" placeholder="Departamento"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="puesto">Puesto</label>
+                                <input name="puesto" type="text" class="form-control" placeholder="Puesto" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="fechaIngreso">Fecha Ingreso</label>
+                                <input name="fechaIngreso" type="date" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="direccion">Direccion</label>
+                                <input name="direccion" type="text" class="form-control" placeholder="Dirección fisica"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="telefono">Telefono</label>
+                                <input name="telefono" type="text" class="form-control" placeholder="Celular o Local"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="email">E-Mail</label>
+                                <input name="email" type="email" class="form-control" placeholder="Correo Electronico"
+                                    required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success float-right mt-4">Dar de alta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- nombres, apellidos, rfc, curp, seguro social, departamento, puesto, fecha nac, sexo, direccion, telefono, email --}}
