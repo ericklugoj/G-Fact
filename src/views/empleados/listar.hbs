@@ -1,21 +1,83 @@
-<div class="container p-4">
+<div class="p-4">
     <div class="row">
-        {{#each links}}
-        <div class="col-md-3 mb-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <a href="{{url}}" target="_blank">
-                        <h3 class="card-title text-uppercase">
-                            {{title}}
-                        </h3>
-                    </a>
-                    <p class="m-2">{{description}}</p>
-                    <p>{{timeago created_at}}</p>
-                    <a href="/links/delete/{{id}}" class="btn btn-danger">Delete Link</a>
-                    <a href="/links/edit/{{id}}" class="btn btn-primary">Edit</a>
-                </div>
-            </div>
-        </div>
+        {{#each empleados}}
+        <h3 class="mb-4"><i class="fas fa-users"></i> Listado de empleados</h3>
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Nacimiento</th>
+                    <th scope="col">Sexo</th>
+                    <th scope="col">RFC</th>
+                    <th scope="col">CURP</th>
+                    <th scope="col">NSS</th>
+                    <th scope="col">Dpto</th>
+                    <th scope="col">Puesto</th>
+                    <th scope="col">Ingreso</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Erick Gustavo Lugo Juarez</th>
+                    <td>06/05/1994</td>
+                    <td>Hombre</td>
+                    <td>LUJE940506</td>
+                    <td>LUJE940506HYNGRR09</td>
+                    <td>LUJE940506HYNGR</td>
+                    <td>Desarrollo</td>
+                    <td>Gerente</td>
+                    <td>01/01/2000</td>
+                    <td>Calle 53b #444</td>
+                    <td>9991942726</td>
+                    <td>ericklugoj@gmail.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">Erick Gustavo Lugo Juarez</th>
+                    <td>06/05/1994</td>
+                    <td>Hombre</td>
+                    <td>LUJE940506</td>
+                    <td>LUJE940506HYNGRR09</td>
+                    <td>LUJE940506HYNGR</td>
+                    <td>Desarrollo</td>
+                    <td>Gerente</td>
+                    <td>01/01/2000</td>
+                    <td>Calle 53b #444</td>
+                    <td>9991942726</td>
+                    <td>ericklugoj@gmail.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">Erick Gustavo Lugo Juarez</th>
+                    <td>06/05/1994</td>
+                    <td>Hombre</td>
+                    <td>LUJE940506</td>
+                    <td>LUJE940506HYNGRR09</td>
+                    <td>LUJE940506HYNGR</td>
+                    <td>Desarrollo</td>
+                    <td>Gerente</td>
+                    <td>01/01/2000</td>
+                    <td>Calle 53b #444</td>
+                    <td>9991942726</td>
+                    <td>ericklugoj@gmail.com</td>
+                </tr>
+                <tr>
+                    <th scope="row">Erick Gustavo Lugo Juarez</th>
+                    <td>06/05/1994</td>
+                    <td>Hombre</td>
+                    <td>LUJE940506</td>
+                    <td>LUJE940506HYNGRR09</td>
+                    <td>LUJE940506HYNGR</td>
+                    <td>Desarrollo</td>
+                    <td>Gerente</td>
+                    <td>01/01/2000</td>
+                    <td>Calle 53b #444</td>
+                    <td>9991942726</td>
+                    <td>ericklugoj@gmail.com</td>
+                </tr>
+            </tbody>
+        </table>
         {{else}}
         <div class="col-md-6 mx-auto">
             <div class="card card-body text-center">

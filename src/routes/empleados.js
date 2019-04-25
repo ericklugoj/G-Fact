@@ -7,9 +7,9 @@ const {
 } = require('../lib/auth');
 
 router.get('/', isLoggedIn, async (req, res) => {
-    const links = await pool.query('SELECT * FROM links WHERE user_id = ?', [req.user.id]);
+    const empleados = await pool.query('SELECT * FROM empleados');
     res.render('empleados/listar', {
-        links
+        empleados
     });
 });
 
@@ -17,31 +17,44 @@ router.get('/agregar', isLoggedIn, (req, res) => {
     res.render('empleados/agregar');
 });
 
-router.post('/add', isLoggedIn, async (req, res) => {
+router.post('/agregar', isLoggedIn, async (req, res) => {
     const {
-        title,
-        url,
-        description
+        nombres,
+        apellidos,
+        fecha_nacimiento,
+        sexo,
+        rfc,
+        curp,
+        seguro_social,
+        departamento,
+        puesto,
+        fecha_ingreso,
+        direccion,
+        telefono,
+        email
     } = req.body;
 
-    const newLink = {
-        title,
-        url,
-        description,
-        user_id: req.user.id
+    const nuevoEmpleado = {
+        nombres,
+        apellidos,
+        fecha_nacimiento,
+        sexo,
+        rfc,
+        curp,
+        seguro_social,
+        departamento,
+        puesto,
+        fecha_ingreso,
+        direccion,
+        telefono,
+        email,
+        fecha_registro: new Date()
     };
 
-    await pool.query('INSERT INTO links SET ?', [newLink]);
+    await pool.query('INSERT INTO empleados SET ?', [nuevoEmpleado]);
     //mensajes
-    req.flash('success', 'Link agregado');
-    res.redirect('/links');
-});
-
-router.get('/', isLoggedIn, async (req, res) => {
-    const links = await pool.query('SELECT * FROM links WHERE user_id = ?', [req.user.id]);
-    res.render('links/list', {
-        links
-    });
+    req.flash('success', 'Empleado dado de alta correctamente');
+    res.redirect('/empleados');
 });
 
 router.get('/delete/:id', isLoggedIn, async (req, res) => {

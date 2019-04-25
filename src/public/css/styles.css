@@ -5,6 +5,10 @@ body {
     overflow: hidden;
 }
 
+table {
+    font-size: 12px;
+}
+
 .navbar {
     font-size: 14px;
 }

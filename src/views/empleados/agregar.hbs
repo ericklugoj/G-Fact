@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="mb-5"><i class="fas fa-user-plus"></i> Agregar Empleado</i></h3>
-                    <form action="/links/add" method="POST">
+                    <form action="/empleados/agregar" method="POST">
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="nombres">Nombres</label>
@@ -17,8 +17,8 @@
                                     placeholder="primer y segundo apellido" required>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="fechaNacimiento">Fecha de nacimiento</label>
-                                <input name="fechaNacimiento" type="date" class="form-control" required>
+                                <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                                <input name="fecha_nacimiento" type="date" class="form-control" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="sexo">Sexo</label>
@@ -36,9 +36,9 @@
                                 <input name="curp" type="text" class="form-control" placeholder="CURP" required>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="nss">Seguro Social</label>
-                                <input name="nss" type="text" class="form-control" placeholder="N. Seguro Social"
-                                    required>
+                                <label for="seguro_social">Seguro Social</label>
+                                <input name="seguro_social" type="text" class="form-control"
+                                    placeholder="N. Seguro Social" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="departamento">Departamento</label>
@@ -50,8 +50,8 @@
                                 <input name="puesto" type="text" class="form-control" placeholder="Puesto" required>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="fechaIngreso">Fecha Ingreso</label>
-                                <input name="fechaIngreso" type="date" class="form-control" required>
+                                <label for="fecha_ingreso">Fecha Ingreso</label>
+                                <input name="fecha_ingreso" type="date" class="form-control" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="direccion">Direccion</label>
@@ -69,7 +69,7 @@
                                     required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success float-right mt-4">Dar de alta</button>
+                        <button class="btn btn-success float-right mt-4">Dar de alta</button>
                     </form>
                 </div>
             </div>
