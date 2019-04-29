@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const pool = require('../database');
+
 const passport = require('passport');
 const {
     isLoggedIn,
@@ -29,8 +31,11 @@ router.post('/signin', isNotLoggedIn, (req, res, next) => {
     })(req, res, next);
 });
 
-router.get('/profile', isLoggedIn, (req, res) => {
-    res.render('profile');
+router.get('/profile', isLoggedIn, async (req, res) => {
+    let num_empleados = await pool.query('SELECT COUNT(*) AS total FROM empleados');
+    res.render('profile', {
+        empleados: num_empleados[0]
+    });
 });
 
 router.get('/logout', isLoggedIn, (req, res) => {
