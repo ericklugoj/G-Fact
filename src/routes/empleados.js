@@ -31,7 +31,8 @@ router.post('/agregar', isLoggedIn, async (req, res) => {
         fecha_ingreso,
         direccion,
         telefono,
-        email
+        email,
+        sueldo_diario
     } = req.body;
 
     const nuevoEmpleado = {
@@ -48,6 +49,7 @@ router.post('/agregar', isLoggedIn, async (req, res) => {
         direccion,
         telefono,
         email,
+        sueldo_diario,
         fecha_registro: new Date()
     };
 
@@ -67,39 +69,60 @@ router.get('/delete/:id', isLoggedIn, async (req, res) => {
     res.redirect('/links');
 });
 
-router.get('/edit/:id', isLoggedIn, async (req, res) => {
+router.get('/editar/:id', isLoggedIn, async (req, res) => {
     const {
         id
     } = req.params;
 
-    const links = await pool.query('SELECT * FROM links WHERE id = ?', [id]);
-
-    res.render('links/edit', {
-        link: links[0]
+    const empleados = await pool.query('SELECT * FROM empleados WHERE id_empleado = ?', [id]);
+    res.render('empleados/editar', {
+        empleado: empleados[0]
     });
 });
 
-router.post('/edit/:id', isLoggedIn, async (req, res) => {
+router.post('/editar/:id', isLoggedIn, async (req, res) => {
     const {
         id
     } = req.params;
 
     const {
-        title,
-        description,
-        url
+        nombres,
+        apellidos,
+        fecha_nacimiento,
+        sexo,
+        rfc,
+        curp,
+        seguro_social,
+        departamento,
+        puesto,
+        fecha_ingreso,
+        direccion,
+        telefono,
+        email,
+        sueldo_diario
     } = req.body;
 
-    const newLink = {
-        title,
-        description,
-        url
+    const nuevoEmpleado = {
+        nombres,
+        apellidos,
+        fecha_nacimiento,
+        sexo,
+        rfc,
+        curp,
+        seguro_social,
+        departamento,
+        puesto,
+        fecha_ingreso,
+        direccion,
+        telefono,
+        email,
+        sueldo_diario
     };
 
-    await pool.query('UPDATE links SET ? WHERE id = ?', [newLink, id]);
+    await pool.query('UPDATE empleados SET ? WHERE id_empleado = ?', [nuevoEmpleado, id]);
 
-    req.flash('success', 'Link actualizado');
-    res.redirect('/links');
+    req.flash('success', 'Empleado actualizado');
+    res.redirect('/empleados');
 });
 
 module.exports = router;

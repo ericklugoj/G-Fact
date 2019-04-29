@@ -4,21 +4,22 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="mb-2"><i class="fas fa-user-plus"></i> Agregar Empleado</i></h3>
-                    <form action="/empleados/agregar" method="POST">
+                    <form action="/empleados/editar/{{empleado.id_empleado}}" method="POST">
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="nombres">Nombres</label>
-                                <input name="nombres" type="text" class="form-control"
+                                <input name="nombres" value="{{empleado.nombres}}" type="text" class="form-control"
                                     placeholder="primer y segundo nombre" autofocus required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="apellidos">Apellidos</label>
-                                <input name="apellidos" type="text" class="form-control"
+                                <input name="apellidos" value="{{empleado.apellidos}}" type="text" class="form-control"
                                     placeholder="primer y segundo apellido" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                                <input name="fecha_nacimiento" type="date" class="form-control" required>
+                                <input name="fecha_nacimiento" value="1994-02-09" type="date" class="form-control"
+                                    required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="sexo">Sexo</label>
@@ -29,57 +30,59 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="rfc">RFC</label>
-                                <input name="rfc" type="text" class="form-control" placeholder="RFC" required>
+                                <input name="rfc" value="{{empleado.rfc}}" type="text" class="form-control"
+                                    placeholder="RFC" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="curp">CURP</label>
-                                <input name="curp" type="text" class="form-control" placeholder="CURP" required>
+                                <input name="curp" value="{{empleado.curp}}" type="text" class="form-control"
+                                    placeholder="CURP" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="seguro_social">Seguro Social</label>
-                                <input name="seguro_social" type="text" class="form-control"
-                                    placeholder="N. Seguro Social" required>
+                                <input name="seguro_social" value="{{empleado.seguro_social}}" type="text"
+                                    class="form-control" placeholder="N. Seguro Social" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="departamento">Departamento</label>
-                                <input name="departamento" type="text" class="form-control" placeholder="Departamento"
-                                    required>
+                                <input name="departamento" value="{{empleado.departamento}}" type="text"
+                                    class="form-control" placeholder="Departamento" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="puesto">Puesto</label>
-                                <input name="puesto" type="text" class="form-control" placeholder="Puesto" required>
+                                <input name="puesto" value="{{empleado.puesto}}" type="text" class="form-control"
+                                    placeholder="Puesto" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="fecha_ingreso">Fecha Ingreso</label>
-                                <input name="fecha_ingreso" type="date" class="form-control" required>
+                                <input name="fecha_ingreso" value="{{empleado.fecha_ingreso}}" type="date"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="direccion">Direccion</label>
-                                <input name="direccion" type="text" class="form-control" placeholder="Dirección fisica"
-                                    required>
+                                <input name="direccion" value="{{empleado.direccion}}" type="text" class="form-control"
+                                    placeholder="Dirección fisica" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telefono">Telefono</label>
-                                <input name="telefono" type="text" class="form-control" placeholder="Celular o Local"
-                                    required>
+                                <input name="telefono" value="{{empleado.telefono}}" type="text" class="form-control"
+                                    placeholder="Celular o Local" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="email">E-Mail</label>
-                                <input name="email" type="email" class="form-control" placeholder="Correo Electronico"
-                                    required>
+                                <input name="email" value="{{empleado.email}}" type="email" class="form-control"
+                                    placeholder="Correo Electronico" required>
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="sueldo_diario">Sueldo Diario</label>
-                                <input name="sueldo_diario" value="" type="number" class="form-control"
-                                    placeholder="Sueldo diario" required> MXN
+                                <input name="sueldo_diario" value="{{empleado.sueldo_diario}}" value="" type="number"
+                                    class="form-control" placeholder="Sueldo diario" required> MXN
                             </div>
                         </div>
-                        <button class="btn btn-success float-right mt-4">Dar de alta</button>
+                        <button class="btn btn-success float-right">Dar de alta</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-{{!-- nombres, apellidos, rfc, curp, seguro social, departamento, puesto, fecha nac, sexo, direccion, telefono, email --}}
