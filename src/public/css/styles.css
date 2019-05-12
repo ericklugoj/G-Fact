@@ -2,7 +2,7 @@ body {
     background: #f5f6f5;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 table {
@@ -34,7 +34,6 @@ table {
     font-family: 'Josefin Sans', sans-serif;
     color: whitesmoke;
     min-height: 30rem;
-    width: 100%;
     height: 100%;
     padding-top: 8rem;
     background: url('/img/Background.jpg');

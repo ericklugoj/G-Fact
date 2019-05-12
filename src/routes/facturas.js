@@ -6,11 +6,16 @@ const {
     isLoggedIn
 } = require('../lib/auth');
 
+// Modificar esta ruta para visualizar las facturas
 router.get('/', isLoggedIn, async (req, res) => {
     const facturas = await pool.query('SELECT * FROM empleados');
     res.render('facturas/listar', {
         facturas
     });
+});
+
+router.get('/individual', isLoggedIn, (req, res) => {
+    res.render('facturas/individual');
 });
 
 router.get('/agregar', isLoggedIn, (req, res) => {
