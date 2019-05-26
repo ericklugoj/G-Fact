@@ -6,8 +6,9 @@
                 <div class="card-body">
                     <select class="form-control form-control-lg">
                         <option value="" selected disabled hidden>Escoge un empleado</option>
-                        <option>Erick Gustavo Lugo Juarez (LUJE9405HYN)</option>
-                        <option>Juan Carlos Zeron Garcia (ZEGJ990205RP)</option>
+                        {{#each empleados}}
+                        <option value="{{id_empleado}}">{{nombres}} {{apellidos}}</option>
+                        {{/each}}
                     </select>
                 </div>
             </div>

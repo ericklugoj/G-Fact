@@ -8,14 +8,17 @@ const {
 
 // Modificar esta ruta para visualizar las facturas
 router.get('/', isLoggedIn, async (req, res) => {
-    const facturas = await pool.query('SELECT * FROM empleados');
+    const facturas = await pool.query('SELECT * FROM facturas');
     res.render('facturas/listar', {
         facturas
     });
 });
 
-router.get('/individual', isLoggedIn, (req, res) => {
-    res.render('facturas/individual');
+router.get('/individual', isLoggedIn, async (req, res) => {
+    const empleados = await pool.query('SELECT * FROM empleados ORDER BY nombres ASC');
+    res.render('facturas/individual', {
+        empleados
+    });
 });
 
 router.get('/agregar', isLoggedIn, (req, res) => {
