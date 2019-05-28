@@ -32,9 +32,11 @@ router.post('/signin', isNotLoggedIn, (req, res, next) => {
 });
 
 router.get('/profile', isLoggedIn, async (req, res) => {
-    let num_empleados = await pool.query('SELECT COUNT(*) AS total FROM empleados');
+    const num_empleados = await pool.query('SELECT COUNT(*) AS total FROM empleados');
+    const num_facturas = await pool.query('SELECT COUNT(*) AS total FROM facturas');
     res.render('profile', {
-        empleados: num_empleados[0]
+        empleados: num_empleados[0],
+        facturas: num_facturas[0]
     });
 });
 

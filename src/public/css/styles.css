@@ -9,6 +9,10 @@ table {
     font-size: 12px;
 }
 
+.ocultar {
+    display: none;
+}
+
 .navbar {
     font-size: 14px;
 }

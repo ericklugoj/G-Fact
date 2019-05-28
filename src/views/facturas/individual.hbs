@@ -4,7 +4,7 @@
             <h1>Facturación individual</h1>
             <div class="card text-center">
                 <div class="card-body">
-                    <select class="form-control form-control-lg">
+                    <select class="form-control form-control-lg" id="select_empleados">
                         <option value="" selected disabled hidden>Escoge un empleado</option>
                         {{#each empleados}}
                         <option value="{{id_empleado}}">{{nombres}} {{apellidos}}</option>
@@ -16,17 +16,23 @@
     </div>
 </div>
 
-<div class="container p-4">
+<div class="container p-4 ocultar" id="formulario">
     <div class="row">
         <div class="col-md-12 mx-auto">
             <div class="card text-center">
                 <div class="card-body">
-                    <form action="/empleados/agregar" method="POST">
+                    <form action="/facturas/facturar" method="POST">
                         <div class="form-row">
+                            <div class="form-group" style="display: none;">
+                                <input name="id_empleado" id="id_empleado" required>
+                            </div>
+                            <div class="form-group" style="display: none;">
+                                <input name="nombre_completo_empleado" id="nombre_completo_empleado" required>
+                            </div>
                             <div class="form-group col-md-4">
-                                <label for="nombres">Sueldo diario</label>
-                                <input name="nombres" type="text" class="form-control"
-                                    placeholder="Sueldo por dia trabajado" autofocus required>
+                                <label for="sueldo_diario">Sueldo diario</label>
+                                <input name="sueldo_diario" id="sueldo_diario" type="number" min="1"
+                                    class="form-control" placeholder="Sueldo por dia trabajado" autofocus required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inicio_periodo">Inicio de periodo</label>
@@ -38,26 +44,24 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="otros_pagos">Otros pagos</label>
-                                <input name="otros_pagos" type="number" min="0" class="form-control" placeholder="Monto"
-                                    required>
+                                <input name="otros_pagos" type="number" min="0" class="form-control"
+                                    placeholder="Monto">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="rfc">Faltas</label>
-                                <input name="rfc" type="number" min="0" class="form-control" placeholder="Monto"
-                                    required>
+                                <label for="faltas">Faltas</label>
+                                <input name="faltas" type="number" min="0" class="form-control" placeholder="Monto">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="curp">Retardos</label>
-                                <input name="curp" type="number" min="0" class="form-control" placeholder="Monto"
-                                    required>
+                                <label for="retardos">Retardos</label>
+                                <input name="retardos" type="number" min="0" class="form-control" placeholder="Monto">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="correo">Email</label>
-                                <input name="correo" type="email" class="form-control" placeholder="Correo electronico"
-                                    required>
+                                <input name="correo" id="correo" type="email" class="form-control"
+                                    placeholder="Correo electronico" required>
                             </div>
                         </div>
-                        <button class="btn btn-success float-right mt-4">Timbrar y enviar</button>
+                        <button type="submit" class="btn btn-success float-right mt-4">Timbrar y enviar</button>
                     </form>
                 </div>
             </div>

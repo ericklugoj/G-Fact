@@ -4,8 +4,7 @@
         <div class="col-md-6 mx-auto">
             <div class="card card-body text-center">
                 <p>Aun no se ha emitido ninguna factura</p>
-                <a href="/facturas/global">Facturar Globlal</a>
-                <a href="/facturas/individual">Facturar Individual</a>
+                <a href="/facturas/individual">Crear una factura individual</a>
             </div>
         </div>
         {{else}}
@@ -23,14 +22,14 @@
             <tbody>
                 {{#each facturas}}
                 <tr>
-                    <td scope="row">{{nombres}} {{apellidos}}</td>
-                    <td>Ericklugoj@gmail.com</td>
-                    <td>06 de mayo de 2019 13:22pm</td>
-                    <td>$15,220.00</td>
+                    <td scope="row">{{nombre_completo_empleado}}</td>
+                    <td>{{email}}</td>
+                    <td>{{fecha_timbrado}}</td>
+                    <td>${{monto_total}}</td>
                     <td>
-                        <a href="#" class="badge badge-warning" data-toggle="tooltip" data-placement="top"
-                            title="Re enviar por correo"><i class="fas fa-reply fa-2x"></i></a>
-                        <a href="#" class="badge badge-danger" data-toggle="tooltip" data-placement="top"
+                        <a href="/facturas/correo/{{id_facturas}}" class="badge badge-warning" data-toggle="tooltip"
+                            data-placement="top" title="Re enviar por correo"><i class="fas fa-reply fa-2x"></i></a>
+                        <a href="{{ruta_pdf}}" class="badge badge-danger" data-toggle="tooltip" data-placement="top"
                             title="Visualizar PDF"><i class="fas fa-file-pdf fa-2x"></i></a>
                     </td>
                 </tr>
