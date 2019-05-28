@@ -9,7 +9,7 @@ const {
 
 // Modificar esta ruta para visualizar las facturas
 router.get('/', isLoggedIn, async (req, res) => {
-    const facturas = await pool.query('SELECT * FROM facturas');
+    const facturas = await pool.query('SELECT * FROM facturas ORDER BY id_facturas DESC');
     res.render('facturas/listar', {
         facturas
     });
@@ -99,27 +99,142 @@ router.post('/facturar', isLoggedIn, async (req, res) => {
     // Calcular sueldo neto
     var sueldo_neto = (((sueldo_diario * aux_diasTrabajados) + (aux_otrosPagos)) - (aux_faltas + aux_retardos));
 
+    var cuota_imss = (sueldo_neto * 0.06);
+    sueldo_neto = (sueldo_neto - cuota_imss);
+
     // Crear PDF
+    const empleado = await pool.query('SELECT * FROM empleados WHERE id_empleado = ?', [id_empleado]);
+    console.log('el empleado es: ', empleado);
     var pdf = require('html-pdf');
     var varDate = new Date();
     varDate = varDate.toDateString();
     var ruta_archivo_pdf = path.join(__dirname, '..', 'public', 'pdf', nombre_completo_empleado, 'FACTURA_NOMINA_' + varDate + '.pdf');
 
+    // Variables para PDF
+    var otrosPagos_table = '';
+    if (otros_pagos != '') {
+        otrosPagos_table = `
+        <tr>
+            <td>Otros pagos</td>
+            <td><p style="text-align: right;">$${otros_pagos}</p></td>
+        </tr>`;
+    }
+
+    var faltas_table = '';
+    if (faltas != '') {
+        faltas_table = `
+        <tr>
+            <td>Faltas</td>
+            <td><p style="text-align: right;">$${faltas}</p></td>
+        </tr>`;
+    }
+
+    var retardos_table = '';
+    if (retardos != '') {
+        retardos_table = `
+        <tr>
+            <td>Retardos</td>
+            <td><p style="text-align: right;">$${retardos}</p></td>
+        </tr>`;
+    }
+
+    var ruta_img = path.join('file://', __dirname, '..', 'public', 'img', 'genesis.png');
+    console.log('ruta img: ', ruta_img);
     var contenido = `
     <table>
-    <tr style="background: black; color: white">
-        <th>Name</th>
-        <th colspan="2">Telephone</th>
-    </tr>
-    <tr>
-        <td>Bill Gates</td>
-        <td>55577854</td>
-        <td>55577855</td>
+    <tr style="font-size: 15px; font-weight: bold;">
+        <td><img src="${ruta_img}" width="50%"/></td>
+        <td><center style="font-size: 8px;">
+        GENESIS APLICACIONES S.A. DE C.V. <br>
+        GAP130208C85 <br>
+        <p style="font-weight: normal;">42 x 47, 298-A, Francisco de Montejo, 97203, Mérida, Yucatán, México <br>
+        General de Ley Personas Morales (601) </p>
+        </center></td>
+        <td><p style="text-align: right">FACTURA DE NOMINA</p></td>
     </tr>
     </table>
+    <br>
+    <hr>
+    <table style="width: 100%; font-size: 8px;">
+    <tr style="text-align: center;">
+        <td>N° emp: ${id_empleado}</td>
+        <td>${nombre_completo_empleado}</td>
+        <td>RFC: ${empleado[0].rfc}</td>
+        <td>IMSS: ${empleado[0].seguro_social}</td>
+    </tr>
+    <tr style="text-align: center;">
+        <td>Dias pagados: ${diasTrabajados}</td>
+        <td>Periocidad de pago: Quincenal</td>
+        <td>Inicio periodo de pago:${inicio_periodo.toString().split("T").slice(0, 1).join(" ")}</td>
+        <td>Fin periodo de pago: ${fin_periodo.toString().split("T").slice(0, 1).join(" ")}</td>
+    </tr>
+    </table>
+    <hr>
+    <br>
+    <table style="width: 47%; font-size: 10px; display: inline;">
+    <tr style="background:black; color:white; font-size: 12px;">
+        <th style="width: 100%; font-weight: bold" colspan="2">PERCEPCIONES</th>
+    </tr>
+    <tr>
+        <td><p style="font-weight: bold;">Concepto</p></td>
+        <td><p style="text-align: right; font-weight: bold;">Importe</p></td>
+    </tr>
+    <tr>
+        <td>Sueldos, Salarios Rayas y Jornales</td>
+        <td><p style="text-align: right;">$${(sueldo_diario * aux_diasTrabajados)}</p></td>
+    </tr>
+    ${otrosPagos_table}
+    <tr>
+        <td><p style="font-weight: bold">TOTAL PERSEPCIONES</p></td>
+        <td><p style="text-align: right;">$${(sueldo_diario * aux_diasTrabajados) + (aux_otrosPagos)}</p></td>
+    </tr>
+
+    
+    </table>
+    <table style="width: 47%; font-size: 10px; display: inline; margin-left: 4%">
+    <tr style="background:black; color:white; font-size: 12px;">
+        <th style="width: 100%; font-weight: bold" colspan="2">DEDUCCIONES</th>
+    </tr>
+    <tr>
+        <td><p style="font-weight: bold;">Concepto</p></td>
+        <td><p style="text-align: right; font-weight: bold;">Importe</p></td>
+    </tr>
+     <tr>
+        <td>Seguridad Social</td>
+        <td><p style="text-align: right;">$${cuota_imss}</p></td>
+    </tr>
+    ${retardos_table}
+    ${faltas_table}
+    <tr>
+        <td><p style="font-weight: bold">TOTAL DEDUCCIONES</p></td>
+        <td><p style="text-align: right;">$${(cuota_imss) + (aux_retardos) + (aux_faltas)}</p></td>
+    </tr>
+    <tr>
+        <td><p style="font-weight: bold">NETO A PAGAR</p></td>
+        <td><p style="text-align: right;">$${((sueldo_diario * aux_diasTrabajados) + (aux_otrosPagos)) - ((cuota_imss) + (aux_retardos) + (aux_faltas))}</p></td>
+    </tr>
+    </table>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <br>
+
+    <div style="font-size: 8px;">
+    <p>No. Serie del CSD del SAT: <b>00001000000407657133</b></p>
+    <p>PAC: <b>GYS1010015I2</b></p>
+    <p>Fecha Certificación: <b>${varDate}</b></p>
+    <p>Sello Digital del Emisor: <b>C4o7sTOqaZnsXkoAfxhorO4UqTQnDlUd1Bq6GFMGTojlx2oYIp40D2RoJpvrIuPbsh+0mZ1nEaXs6AWOvvcL9KdvbrqhSyIRCvw6Q5DWUXVDMh89w/oW+U7ISlnQUypDMSgAmMtGQSJEhO5FIdjXW/VTRfhoBP+mIdKV9CaCLoneaATKFxQtNBTFjuT5OIJ49k+FyMOiqNdbVs4nG/r7hnSqcBuWqKkEkL+zeQdGwy/pbyqOAw6j5oTn5E+o7Djo8tEAVkkUrue1jXhw6LeB9jQw913WvXvr31gR8ZKMSrkHYsrgkq9k2Jcj5j3HOGLcJIPSAJ8MjQ1E29jqjAgaWw==
+    </b></p>
+    <p>Sello Digital del SAT: <b>YOEZDF9n1oqHTNGqGajreLS+eZOxjmhx4Pl17Hl3794SS+gosiHJhRZifn3e5qM2LMukpMaVu/pEsWD1is1zFRGmRSZ+nbm/9nz9qetV/YdnY2Nv7hmEOsqpjsj3OVXbC7E4caUBH84+KjD+qt8Hti+fIlz+S6sqcGIAf4xno7HF3qXYo8+x2ph33CwRL+n/eEZQfiSM8F5BZVY8TLJzv+gDt6atJtqk22p7/c2shiTbY0ut1ytcPCM149l+/qTYhP1VztrzqBCBeASSsfsMkmSzPiPRRUAhpYtokhbHwZLj1WYC51x8v/s61q7uWzq25ZJCWaXDb6oykFBPhT2TFQ==
+    </b></p>
+    <p>Cadena Original del Complemento de Certificación Digital del SAT: <b>||1.1|0123C5BF-FBE0-48B6-9625-A5A110E3F126|2019-05-13T10:44:55|GYS1010015I2|C4o7sTOqaZnsXkoAfxhorO4UqTQnDlUd1Bq6GFMGTojlx2oYIp40D2RoJpvrIuPbsh+0mZ1nEaXs6AWOvvcL9KdvbrqhSyIRCvw6Q5DWUXVDMh89w/oW+U7ISlnQUypDMSgAmMtGQSJEhO5FIdjXW/VTRfhoBP+mIdKV9CaCLoneaATKFxQtNBTFjuT5OIJ49k+FyMOiqNdbVs4nG/r7hnSqcBuWqKkEkL+zeQdGwy/pbyqOAw6j5oTn5E+o7Djo8tEAVkkUrue1jXhw6LeB9jQw913WvXvr31gR8ZKMSrkHYsrgkq9k2Jcj5j3HOGLcJIPSAJ8MjQ1E29jqjAgaWw==|00001000000407657133||
+    </b></p>
+    </div>
     `;
 
-    pdf.create(contenido).toFile(ruta_archivo_pdf, function (err, res) {
+    await pdf.create(contenido).toFile(ruta_archivo_pdf, function (err, res) {
         if (err) {
             console.log(err);
         } else {
@@ -148,7 +263,7 @@ router.post('/facturar', isLoggedIn, async (req, res) => {
         }]
     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
+    await transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
         } else {
