@@ -61,7 +61,7 @@ router.get('/correo/:id', isLoggedIn, async (req, res) => {
         from: 'ericklugoj@gmail.com',
         to: factura[0].email,
         subject: '[G-FACT] Recibo de nomina (Re enviado)',
-        text: `Hola ${factura[0].nombre_completo_empleado} este correo tiene adjunto `,
+        text: `Hola estimado ${factura[0].nombre_completo_empleado}, El presente correo contiene anexo su comprobante fiscal digital por internet.`,
         attachments: [{
             path: ruta_pdf_correo
         }]
@@ -264,7 +264,7 @@ router.post('/facturar', isLoggedIn, async (req, res) => {
         from: 'ericklugoj@gmail.com',
         to: correo,
         subject: '[G-FACT] Recibo de nomina',
-        text: `Hola ${nombre_completo_empleado} aqui esta tu nomina en formato PDF`,
+        text: `Hola estimado ${nombre_completo_empleado}, El presente correo contiene anexo su comprobante fiscal digital por internet.`,
         attachments: [{
             path: ruta_archivo_pdf
         }]
