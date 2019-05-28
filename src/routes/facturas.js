@@ -10,6 +10,13 @@ const {
 // Modificar esta ruta para visualizar las facturas
 router.get('/', isLoggedIn, async (req, res) => {
     const facturas = await pool.query('SELECT * FROM facturas ORDER BY id_facturas DESC');
+    facturas.forEach(factura => {
+        var f = new Date(factura.fecha_timbrado);
+        var meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+
+        factura.fecha_timbrado = (f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear() + " a las " + f.getHours() + ":" + f.getMinutes());
+
+    });
     res.render('facturas/listar', {
         facturas
     });

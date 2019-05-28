@@ -7,7 +7,16 @@ const {
 } = require('../lib/auth');
 
 router.get('/', isLoggedIn, async (req, res) => {
-    const empleados = await pool.query('SELECT * FROM empleados');
+    let empleados = await pool.query('SELECT * FROM empleados');
+    empleados.forEach(empleado => {
+        var f = new Date(empleado.fecha_nacimiento);
+        var f2 = new Date(empleado.fecha_ingreso);
+        var meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+
+        empleado.fecha_nacimiento = (f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
+        empleado.fecha_ingreso = (f2.getDate() + " de " + meses[f2.getMonth()] + " de " + f2.getFullYear());
+
+    });
     res.render('empleados/listar', {
         empleados
     });
@@ -75,6 +84,17 @@ router.get('/editar/:id', isLoggedIn, async (req, res) => {
     } = req.params;
 
     const empleados = await pool.query('SELECT * FROM empleados WHERE id_empleado = ?', [id]);
+
+    empleados.forEach(empleado => {
+        var f = new Date(empleado.fecha_nacimiento);
+        var f2 = new Date(empleado.fecha_ingreso);
+
+
+
+        empleado.fecha_nacimiento = (f.getFullYear() + "-0" + f.getMonth() + "-0" + f.getDate());
+        empleado.fecha_ingreso = (f2.getFullYear() + "-0" + f2.getMonth() + "-0" + f2.getDate());
+
+    });
     res.render('empleados/editar', {
         empleado: empleados[0]
     });

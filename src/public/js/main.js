@@ -1,5 +1,6 @@
 var select = document.getElementById('select_empleados');
 
+// Al seleccionar un empleado dentro de generar factura individual
 select.addEventListener('click', function (e) {
     formulario = document.getElementById('formulario');
     formulario.classList.add('ocultar');
@@ -23,5 +24,6 @@ select.addEventListener('click', function (e) {
     }).fail(function () {
         alert("Error al cargar datos de empleado");
     });
-
 });
+
+// Fechas

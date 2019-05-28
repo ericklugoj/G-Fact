@@ -8,12 +8,14 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="nombres">Nombres</label>
-                                <input name="nombres" type="text" class="form-control"
+                                <input name="nombres" type="text" maxlength="45" minlength="3" pattern="[A-Za-z ]+"
+                                    title="Solo se pueden usar letras, minimo 3 caracteres" class="form-control"
                                     placeholder="primer y segundo nombre" autofocus required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="apellidos">Apellidos</label>
-                                <input name="apellidos" type="text" class="form-control"
+                                <input name="apellidos" type="text" maxlength="45" minlength="3" pattern="[A-Za-z ]+"
+                                    title="Solo se pueden usar letras" class="form-control"
                                     placeholder="primer y segundo apellido" required>
                             </div>
                             <div class="form-group col-md-3">
@@ -29,25 +31,29 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="rfc">RFC</label>
-                                <input name="rfc" type="text" class="form-control" placeholder="RFC" required>
+                                <input name="rfc" type="text" maxlength="13" minlength="13" class="form-control"
+                                    placeholder="RFC" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="curp">CURP</label>
-                                <input name="curp" type="text" class="form-control" placeholder="CURP" required>
+                                <input name="curp" type="text" maxlength="18" minlength="18" class="form-control"
+                                    placeholder="CURP" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="seguro_social">Seguro Social</label>
-                                <input name="seguro_social" type="text" class="form-control"
+                                <input name="seguro_social" type="text" pattern="[0-9]{11}"
+                                    title="11 numeros sin espacios" maxlength="11" minlength="11" class="form-control"
                                     placeholder="N. Seguro Social" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="departamento">Departamento</label>
-                                <input name="departamento" type="text" class="form-control" placeholder="Departamento"
-                                    required>
+                                <input name="departamento" type="text" maxlength="45" minlength="1" class="form-control"
+                                    placeholder="Departamento" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="puesto">Puesto</label>
-                                <input name="puesto" type="text" class="form-control" placeholder="Puesto" required>
+                                <input name="puesto" type="text" maxlength="45" minlength="1" class="form-control"
+                                    placeholder="Puesto" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="fecha_ingreso">Fecha Ingreso</label>
@@ -55,12 +61,13 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="direccion">Direccion</label>
-                                <input name="direccion" type="text" class="form-control" placeholder="Dirección fisica"
-                                    required>
+                                <input name="direccion" type="text" maxlength="45" minlength="1" class="form-control"
+                                    placeholder="Dirección fisica" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="telefono">Telefono</label>
-                                <input name="telefono" type="text" class="form-control" placeholder="Celular o Local"
+                                <input name="telefono" type="text" pattern="[0-9]{10}" title="10 numeros sin espacios"
+                                    maxlength="10" minlength="10" class="form-control" placeholder="Celular o Local"
                                     required>
                             </div>
                             <div class="form-group col-md-4">
@@ -70,7 +77,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="sueldo_diario">Sueldo Diario</label>
-                                <input name="sueldo_diario" value="" type="number" class="form-control"
+                                <input name="sueldo_diario" value="" min="1" type="number" class="form-control"
                                     placeholder="Sueldo diario" required> MXN
                             </div>
                         </div>
