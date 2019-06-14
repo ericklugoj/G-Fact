@@ -1,12 +1,12 @@
 # G-Fact :bar_chart:
 
-G-Fact fue un proyecto para la materia de ingeniería de software, este sistema simula el proceso de facturación de nomina.
+G-Fact fue un proyecto para la materia de ingeniería de software, el sistema simula el proceso de facturación de nómina.
 
 ## **Características:**
  - Control de usuarios (Loggin y registro de usuarios).
- - Dashboard principal con información critica (numero total de empleados registrados y nominas enviadas).
+ - Dashboard principal con información critica (numero total de empleados registrados y nóminas enviadas).
  - Permite añadir y editar empleados (no se pueden eliminar).
- - Permite timbrar (de manera simulada) la nomina individual de cada empleado.
+ - Permite timbrar (de manera simulada) la nómina individual de cada empleado.
  - Al timbrar una factura se genera un reporte en formato PDF que contiene toda la información general del empleado, los dias pagados, si tiene o no retardos, faltas u otros pagos.
  - Envía un correo electrónico al empleado con su factura en formato PDF (el que se genero previamente).
  - El administrador puede desde el dashboard volver a enviar esa factura en PDF o visualizarla desde el navegador.
