@@ -31,4 +31,12 @@ G-Fact fue un proyecto para la materia de ingeniería de software, el sistema si
 
 **Live preview: alojado en [Heroku](https://g-fact.herokuapp.com/)**
 
-*MADE WITH   :green_heart: BY ERICK LUGO*
+### Arrancar
+
+Instalar dependencias y arrancar servidor.
+
+```sh
+$ cd dillinger
+$ npm install -d
+$ npm run start
+```
