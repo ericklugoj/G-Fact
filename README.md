@@ -1,25 +1,38 @@
+<p align="center">
+    <img src="https://lh3.googleusercontent.com/YiqKrqgTIPv6s9xks_Qq5YWKSGhL3cMn00KIicBCDN1VTzSM-a701te5RvmD2H7Vw4f2Qu4Xw60rKhHVqe8hNdDuxGbBIJou42pPtRLEwXjbLC9-XowU-MCiixsjoB2Vqy-Spc-xRlUV99UU1RsG6cjNMTItyf7VCkoF4dqxfcLLRxFhTowuO8X6gSwEHzI5Xoc-6J_Z9zP5q5aq2txy4tMluzpOkZEWEAbxt1nt64WCD8o98GOpFwaRd5ZLqD7uJX-aYCxjJPfgbMVnD6C6gxw1xrgMH95rYimh7QGTTiCXR4lPzAlQ2E91D8TmZmKR6LRiUQlVnEt4fliT-suzIXrv7IPVkIEV0fFk95es1159p9ZQIunFTcu0nJ_DncrCDw0e6iMQLddSt7CktpqaKlrMpNVKzMFqp2jh1ah3rz428vxp6Nzl2BH4OezshcD7XPVJWhF_l5VJYfx6grGv-vc680S19yty4gPFAQSa0nt5JW265cO1hZ2jjjneglBtW3LZWac2v6kGb0NahplheRpv6SfOe71I3VH9Rj21hphNtjh0z_EV9Kphf6l37XW0vj8B6GJuV6hQm3CVPsy6rXHkQPfM_VWpEP563UOOHLtErDMCTSTst75hWcwHyWgiYmWAzrtYdtHuhwOnvK9xNGBUlaHYOmacv8uTGY08XA1HxFEo8FTD-SlTyrDw=w400-h132-no?authuser=0" alt="LUGO">
+    <br>
+    <a href="https://www.facebook.com/ErickLugoJ/" target="_blank">
+        <img src="https://img.shields.io/badge/Facebook-%40ErickLugoJ-blue">
+    </a>
+    <a href="https://twitter.com/ErickLugoo" target="_blank">
+        <img src="https://img.shields.io/twitter/follow/ErickLugoo?style=social">
+    </a>
+    <br>
+    Make It Happen ☄️
+</p>
+
+
 # G-Fact :bar_chart:
+G-Fact was a school project that manage information about employes and they payments, everytime that the company do a payments, all employes recive they bill on their email inbox.
 
-G-Fact fue un proyecto para la materia de ingeniería de software, el sistema simula el proceso de facturación de nómina.
-
-## **Características:**
- - Control de usuarios (Login y registro de usuarios).
- - Dashboard principal con información critica (número total de empleados registrados y nóminas enviadas).
- - Permite añadir y editar empleados (no se pueden eliminar).
- - Permite timbrar (de manera simulada) la nómina individual de cada empleado.
- - Al timbrar una factura se genera un reporte en formato PDF que contiene toda la información general del empleado, los dias pagados, si tiene o no retardos, faltas u otros pagos.
- - Envía un correo electrónico al empleado con su factura en formato PDF (el que se generó previamente).
- - El administrador puede desde el dashboard volver a enviar esa factura en PDF o visualizarla desde el navegador.
- - Vista con tablas que contienen información completa de los empleados .
- - Vista con tablas que contienen información detallada de las facturas que se han generado.
+## About This 📢
+- User control (Login and user registration).
+ - Main dashboard with critical information (total number of registered employees and payrolls sent).
+ - Allows you to add and edit employees (they cannot be removed).
+ - Allows to stamp (simulated) the individual payroll of each employee.
+ - When stamping an invoice a report is generated in PDF format that contains all the general information of the employee, the days paid, whether or not he has delays, absences or other payments.
+ - Send an email to the employee with their invoice in PDF format (the one previously generated).
+ - The administrator can send the invoice in PDF from the dashboard or view it from the browser.
+ - View with tables containing complete information on employees.
+ - View with tables that contain detailed information of the invoices that have been generated.
  
-## **Tecnologías utilizadas**
+## Technologies 🧪
 **Backend:**
  - Node JS
  - Express
- - Passport (login y registro)
+ - Passport (Session)
 
-**Base de datos:**
+**DataBase:**
 - MySQL
 
 **Frontend**
@@ -27,16 +40,14 @@ G-Fact fue un proyecto para la materia de ingeniería de software, el sistema si
 - CSS 3
 - Bootstrap 4
 - Javascript vanilla
-- Handlebars (motor de plantillas)
+- Handlebars (Template Engine)
 
-**Live preview: alojado en [Heroku](https://g-fact.herokuapp.com/)**
+**Live preview: on [Heroku](https://g-fact.herokuapp.com/)**
 
-### Arrancar
-
-Instalar dependencias y arrancar servidor.
+### How to start 🛠
 
 ```sh
-$ cd dillinger
-$ npm install -d
-$ npm run start
+$ cd G-Fact
+$ npm install
+$ npm start
 ```
