@@ -21,7 +21,7 @@
     "handlebars-dateformat": "^1.1.1",
     "handlebars-helpers": "^0.10.0",
     "handlebars-intl": "^1.1.2",
-    "html-pdf": "^2.2.0",
+    "html-pdf": "^3.0.1",
     "morgan": "^1.9.1",
     "mysql": "^2.16.0",
     "nodemailer": "^6.2.1",
